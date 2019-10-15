@@ -1,0 +1,3 @@
+include ':app'
+include ':language-plugin'
+rootProject.name = 'android-language-plugin'

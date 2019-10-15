@@ -1,0 +1,26 @@
+apply plugin: 'groovy'//导入java插件用于，编译打包我们的插件
+apply plugin: 'maven'//maven插件，用于上传插件到仓库
+apply plugin: 'java'
+
+dependencies {
+    compile "org.apache.poi:poi:4.1.0"
+    compile "org.apache.poi:poi-ooxml:4.1.0"
+    compile "org.apache.poi:poi-ooxml-schemas:4.1.0"
+    compile "org.json:json:20190722"
+    compile gradleApi()
+}
+
+sourceSets {
+    main.groovy {
+        srcDirs = ['src/main/groovy']
+    }
+
+    main.java {
+        srcDirs = ['src/main/java']
+    }
+}
+
+version = "2.1.0-SNAPSHOT"
+group = rootProject.ext.GROUP
+
+apply from: rootProject.file('gradle/java-maven-publish.gradle')

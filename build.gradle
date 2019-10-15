@@ -1,0 +1,62 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.1'
+
+        classpath 'digital.wup:android-maven-publish:3.6.2'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.hmzhou.plugin:hjlanguage-plugin:1.0.0-SNAPSHOT'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    // For android sub-projects
+    minSdkVersion = 16
+    targetSdkVersion = 29
+    compileSdkVersion = 29
+    buildToolsVersion = '29.0.3'
+
+    javaVersion = JavaVersion.VERSION_1_8
+
+    GROUP = "${PLUGIN_GROUP}"
+    VERSION_NAME = "${VERSION_NAME_PREFIX}${VERSION_NAME_SUFFIX}"
+
+    POM_PACKAGING = "pom"
+    POM_DESCRIPTION = "${PLUGIN_POM_DESCRIPTION}"
+
+    POM_DEVELOPER_ID = "${PLUGIN_POM_DEVELOPER_ID}"
+    POM_DEVELOPER_NAME = "${PLUGIN_POM_DEVELOPER_NAME}"
+
+    BINTRAY_LICENCE = ['BSD 3-Clause']
+    BINTRAY_ORGANIZATION = "${BINTRAY_ORGANIZATION}"
+
+    REPOSITORY_URL = "${PLUGIN_REPOSITORY_URL}"
+    REPOSITORY_USERNAME = "${PLUGIN_REPOSITORY_USERNAME}"
+    REPOSITORY_PASSWORD = "${PLUGIN_REPOSITORY_PASSWORD}"
+}
+
+apply plugin: 'android-language'
+hjlanguage {
+    languagemap 'hjlanguage/language-map'
+}
+
